@@ -33,10 +33,26 @@ export default {
     '@nuxtjs/bulma',
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    '@nuxtjs/auth',
   ],
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {},
+
+  auth: {
+    strategies: {
+      auth0: {
+        domain: 'XXXXX', // Auth0 App Domain
+        client_id: 'XXXXX', // Auth0 App Client ID
+      },
+    },
+    redirect: {
+      login: '/login', // 未ログイン時のリダイレクト先
+      logout: '/logout', // ログアウト処理を実行した直後のリダイレクト先
+      callback: '/callback', // コールバックURL
+      home: '/mypage', // ログイン後に遷移するページ
+    },
+  },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
@@ -48,4 +64,10 @@ export default {
       },
     },
   },
+
+  /* 全ページに認証をかける場合
+  router: {
+    middleware: 'auth'
+  },
+  */
 }
